@@ -26,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 
@@ -85,13 +87,16 @@ public class ChatsFragment extends Fragment {
                     for (String id:userList){
                         if(user.getId().equals(id)){
                             if(mUsers.size()!=0){
-                                for (User user1 : new ArrayList< User >(mUsers)) {
+                                for (User user1 : new ArrayList<User>(mUsers)) {
                                     if (!user.getId().equals(user1.getId())) {
+                                            if(!mUsers.contains(user))
                                         mUsers.add(user);
                                     }
                                 }
-                            }else{
-                                mUsers.add(user);
+                            }
+                            else{
+                                    mUsers.add(user);
+
                             }
                         }
                     }
